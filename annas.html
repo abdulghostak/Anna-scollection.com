@@ -1,0 +1,636 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Annans Products | Premium Fashion for Confident Women</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --gold: #D4AF37;
+            --gold-light: #F4E8C1;
+            --gold-dark: #B8960C;
+            --black: #1A1A1A;
+            --gray-dark: #4A4A4A;
+            --gray: #8A8A8A;
+            --gray-light: #F5F5F5;
+            --white: #FFFFFF;
+            --cream: #FAF9F6;
+            --whatsapp: #25D366;
+            --telegram: #0088cc;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--white);
+            color: var(--black);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, h4 {
+            font-family: 'Playfair Display', serif;
+        }
+
+        /* Header */
+        header {
+            background: var(--white);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 20px rgba(0,0,0,0.05);
+            transition: all 0.3s ease;
+        }
+
+        .header-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1.5rem 2rem;
+            text-align: center;
+        }
+
+        .brand-name {
+            font-size: 2rem;
+            font-weight: 600;
+            letter-spacing: 3px;
+            color: var(--black);
+            text-transform: uppercase;
+            margin-bottom: 0.25rem;
+        }
+
+        .tagline {
+            font-size: 0.85rem;
+            color: var(--gold-dark);
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            font-weight: 500;
+            margin-bottom: 1rem;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            flex-wrap: wrap;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: var(--gray-dark);
+            font-size: 0.9rem;
+            font-weight: 500;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            transition: color 0.3s ease;
+            position: relative;
+        }
+
+        nav a:hover {
+            color: var(--gold-dark);
+        }
+
+        /* Hero Section */
+        .hero {
+            margin-top: 140px;
+            position: relative;
+            height: 85vh;
+            min-height: 500px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            text-align: center;
+            padding: 0 20px;
+        }
+
+        .hero-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(212,175,55,0.1) 0%, rgba(255,255,255,0.9) 100%),
+                        url('https://images.unsplash.com/photo-1483985988355-763728e1935b?w=1920&q=80');
+            background-size: cover;
+            background-position: center;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 800px;
+            animation: fadeInUp 1s ease;
+        }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .hero h1 {
+            font-size: clamp(2.5rem, 8vw, 4rem);
+            font-weight: 500;
+            margin-bottom: 1.5rem;
+            color: var(--black);
+            line-height: 1.2;
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 1.25rem 3rem;
+            background: var(--gold);
+            color: var(--white);
+            text-decoration: none;
+            font-weight: 600;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            border-radius: 50px;
+            transition: all 0.4s ease;
+            box-shadow: 0 10px 30px rgba(212,175,55,0.3);
+        }
+
+        /* Products Section */
+        .products-section {
+            padding: 6rem 2rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 3rem;
+        }
+
+        .product-card {
+            background: var(--white);
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.08);
+            transition: all 0.4s ease;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .product-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .product-image-container {
+            width: 100%;
+            height: 320px;
+            overflow: hidden;
+        }
+
+        .product-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .product-card:hover .product-image {
+            transform: scale(1.1);
+        }
+
+        .product-info {
+            padding: 1.75rem;
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1;
+        }
+
+        .product-name {
+            font-size: 1.35rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .product-price {
+            font-size: 1.5rem;
+            color: var(--gold-dark);
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+
+        .product-description {
+            color: var(--gray);
+            font-size: 0.95rem;
+            margin-bottom: 1.5rem;
+            flex-grow: 1;
+        }
+
+        /* Action Buttons */
+        .button-group {
+            display: flex;
+            gap: 10px;
+        }
+
+        .chat-btn {
+            flex: 1;
+            padding: 0.8rem;
+            border: none;
+            border-radius: 12px;
+            color: white;
+            font-weight: 600;
+            text-transform: uppercase;
+            font-size: 0.75rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+        }
+
+        .telegram-btn { background: var(--telegram); }
+        .whatsapp-btn { background: var(--whatsapp); }
+
+        /* Reviews Section */
+        .reviews-section {
+            background: var(--cream);
+            padding: 6rem 2rem;
+        }
+
+        .reviews-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .reviews-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .review-card {
+            background: var(--white);
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+        }
+
+        .stars { color: var(--gold); margin-bottom: 1rem; }
+
+        /* Contact Section */
+        .contact-section {
+            padding: 6rem 2rem;
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+            text-align: left;
+        }
+
+        .form-group label { display: block; margin-bottom: 0.5rem; font-weight: 500; }
+        .form-group input, .form-group textarea {
+            width: 100%;
+            padding: 1rem;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            font-family: inherit;
+        }
+
+        .submit-group {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin-top: 2rem;
+        }
+
+        .submit-btn {
+            padding: 1.25rem;
+            border: none;
+            border-radius: 10px;
+            color: white;
+            font-weight: 600;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        footer {
+            background: var(--black);
+            color: white;
+            padding: 4rem 2rem;
+            text-align: center;
+        }
+
+        /* Fade-in Animation */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.6s ease-out;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        @media (max-width: 768px) {
+            .submit-group { grid-template-columns: 1fr; }
+            .hero { margin-top: 100px; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="header-container">
+            <div class="brand-name">Annans Products</div>
+            <div class="tagline">Premium Fashion for Confident Women</div>
+            <nav>
+                <ul>
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#shop">Shop</a></li>
+                    <li><a href="#reviews">Reviews</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section class="hero" id="home">
+        <div class="hero-bg"></div>
+        <div class="hero-content">
+            <h1>Elevate Your Style Instantly</h1>
+            <p>Handpicked premium items designed for elegance and confidence</p>
+            <br>
+            <a href="#shop" class="cta-button">Shop Now</a>
+        </div>
+    </section>
+
+    <section class="products-section" id="shop">
+        <div class="section-header fade-in">
+            <h2>Our Premium Collection</h2>
+        </div>
+        <div class="products-grid">
+            <div class="product-card fade-in">
+                <div class="product-image-container">
+                    <img src="https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?w=600" class="product-image">
+                </div>
+                <div class="product-info">
+                    <h3 class="product-name">Elegant Gold Necklace</h3>
+                    <p class="product-price">$120</p>
+                    <p class="product-description">18K Gold plated necklace. Perfect for layering or as a statement piece.</p>
+                    <div class="button-group">
+                        <button class="chat-btn telegram-btn" onclick="openTG()"><i class="fab fa-telegram"></i> Telegram</button>
+                        <button class="chat-btn whatsapp-btn" onclick="openWA()"><i class="fab fa-whatsapp"></i> WhatsApp</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="product-card fade-in">
+                <div class="product-image-container">
+                    <img src="https://images.unsplash.com/photo-1584917865442-de89df76afd3?w=600" class="product-image">
+                </div>
+                <div class="product-info">
+                    <h3 class="product-name">Luxury Leather Handbag</h3>
+                    <p class="product-price">$500</p>
+                    <p class="product-description">Genuine Italian leather handbag with gold-tone hardware and spacious interior.</p>
+                    <div class="button-group">
+                        <button class="chat-btn telegram-btn" onclick="openTG()"><i class="fab fa-telegram"></i> Telegram</button>
+                        <button class="chat-btn whatsapp-btn" onclick="openWA()"><i class="fab fa-whatsapp"></i> WhatsApp</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="product-card fade-in">
+                <div class="product-image-container">
+                    <img src="https://images.unsplash.com/photo-1511499767150-a48a237f0083?w=600" class="product-image">
+                </div>
+                <div class="product-info">
+                    <h3 class="product-name">Designer Sunglasses</h3>
+                    <p class="product-price">$180</p>
+                    <p class="product-description">Premium UV-protected lenses with hand-polished frames for timeless style.</p>
+                    <div class="button-group">
+                        <button class="chat-btn telegram-btn" onclick="openTG()"><i class="fab fa-telegram"></i> Telegram</button>
+                        <button class="chat-btn whatsapp-btn" onclick="openWA()"><i class="fab fa-whatsapp"></i> WhatsApp</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="product-card fade-in">
+                <div class="product-image-container">
+                    <img src="https://images.unsplash.com/photo-1543163521-1bf539c55dd2?w=600" class="product-image">
+                </div>
+                <div class="product-info">
+                    <h3 class="product-name">Classic High Heels</h3>
+                    <p class="product-price">$220</p>
+                    <p class="product-description">Elegant stiletto heels designed for comfort and sophistication. Premium leather sole.</p>
+                    <div class="button-group">
+                        <button class="chat-btn telegram-btn" onclick="openTG()"><i class="fab fa-telegram"></i> Telegram</button>
+                        <button class="chat-btn whatsapp-btn" onclick="openWA()"><i class="fab fa-whatsapp"></i> WhatsApp</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="product-card fade-in">
+                <div class="product-image-container">
+                    <img src="https://images.unsplash.com/photo-1524592094714-0f0654e20314?w=600" class="product-image">
+                </div>
+                <div class="product-info">
+                    <h3 class="product-name">Premium Wrist Watch</h3>
+                    <p class="product-price">$350</p>
+                    <p class="product-description">Swiss-inspired movement with crystal accents. Water-resistant and timeless.</p>
+                    <div class="button-group">
+                        <button class="chat-btn telegram-btn" onclick="openTG()"><i class="fab fa-telegram"></i> Telegram</button>
+                        <button class="chat-btn whatsapp-btn" onclick="openWA()"><i class="fab fa-whatsapp"></i> WhatsApp</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="product-card fade-in">
+                <div class="product-image-container">
+                    <img src="https://images.unsplash.com/photo-1601924994987-69e26d50dc26?w=600" class="product-image">
+                </div>
+                <div class="product-info">
+                    <h3 class="product-name">Silk Scarf</h3>
+                    <p class="product-price">$140</p>
+                    <p class="product-description">100% pure silk with hand-rolled edges. Versatile elegance for any season.</p>
+                    <div class="button-group">
+                        <button class="chat-btn telegram-btn" onclick="openTG()"><i class="fab fa-telegram"></i> Telegram</button>
+                        <button class="chat-btn whatsapp-btn" onclick="openWA()"><i class="fab fa-whatsapp"></i> WhatsApp</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="product-card fade-in">
+                <div class="product-image-container">
+                    <img src="https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?w=600" class="product-image">
+                </div>
+                <div class="product-info">
+                    <h3 class="product-name">Diamond Earrings</h3>
+                    <p class="product-price">$260</p>
+                    <p class="product-description">Sparkling cubic zirconia set in 18K gold-plated settings. Hypoallergenic posts.</p>
+                    <div class="button-group">
+                        <button class="chat-btn telegram-btn" onclick="openTG()"><i class="fab fa-telegram"></i> Telegram</button>
+                        <button class="chat-btn whatsapp-btn" onclick="openWA()"><i class="fab fa-whatsapp"></i> WhatsApp</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="product-card fade-in">
+                <div class="product-image-container">
+                    <img src="https://images.unsplash.com/photo-1541643600914-78b084683601?w=600" class="product-image">
+                </div>
+                <div class="product-info">
+                    <h3 class="product-name">Luxury Perfume</h3>
+                    <p class="product-price">$200</p>
+                    <p class="product-description">Exclusive fragrance with notes of jasmine and vanilla. 100ml Eau de Parfum.</p>
+                    <div class="button-group">
+                        <button class="chat-btn telegram-btn" onclick="openTG()"><i class="fab fa-telegram"></i> Telegram</button>
+                        <button class="chat-btn whatsapp-btn" onclick="openWA()"><i class="fab fa-whatsapp"></i> WhatsApp</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="product-card fade-in">
+                <div class="product-image-container">
+                    <img src="https://images.unsplash.com/photo-1624222247344-550fb60583dc?w=600" class="product-image">
+                </div>
+                <div class="product-info">
+                    <h3 class="product-name">Fashion Belt</h3>
+                    <p class="product-price">$130</p>
+                    <p class="product-description">Genuine leather with gold-tone buckle. Adjustable fit for waist or hips.</p>
+                    <div class="button-group">
+                        <button class="chat-btn telegram-btn" onclick="openTG()"><i class="fab fa-telegram"></i> Telegram</button>
+                        <button class="chat-btn whatsapp-btn" onclick="openWA()"><i class="fab fa-whatsapp"></i> WhatsApp</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="product-card fade-in">
+                <div class="product-image-container">
+                    <img src="https://images.unsplash.com/photo-1566150905458-1bf1fc113f0d?w=600" class="product-image">
+                </div>
+                <div class="product-info">
+                    <h3 class="product-name">Evening Clutch Bag</h3>
+                    <p class="product-price">$210</p>
+                    <p class="product-description">Crystal-embellished clutch with chain strap. Perfect for special occasions.</p>
+                    <div class="button-group">
+                        <button class="chat-btn telegram-btn" onclick="openTG()"><i class="fab fa-telegram"></i> Telegram</button>
+                        <button class="chat-btn whatsapp-btn" onclick="openWA()"><i class="fab fa-whatsapp"></i> WhatsApp</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="reviews-section" id="reviews">
+        <div class="reviews-container">
+            <div class="section-header fade-in">
+                <h2>Customer Love</h2>
+                <p>Verified reviews from our happy customers</p>
+            </div>
+            <div class="reviews-grid">
+                <div class="review-card fade-in">
+                    <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                    <p class="review-text">"Very legit seller. Fast replies and smooth process on Telegram. Highly recommended!"</p>
+                    <p style="margin-top:10px; font-weight:600;">- Sarah M.</p>
+                </div>
+                <div class="review-card fade-in">
+                    <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                    <p class="review-text">"The handbag is top quality. I'll definitely order again. WhatsApp response was instant."</p>
+                    <p style="margin-top:10px; font-weight:600;">- Jessica P.</p>
+                </div>
+                <div class="review-card fade-in">
+                    <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                    <p class="review-text">"Loved the necklace. Exactly as shown in the photos. Elegant packaging too."</p>
+                    <p style="margin-top:10px; font-weight:600;">- Linda K.</p>
+                </div>
+                <div class="review-card fade-in">
+                    <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                    <p class="review-text">"Communication was quick and professional. Smooth delivery to my doorstep."</p>
+                    <p style="margin-top:10px; font-weight:600;">- Amara E.</p>
+                </div>
+                <div class="review-card fade-in">
+                    <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                    <p class="review-text">"Everything went smoothly from chat to delivery. Trustworthy seller!"</p>
+                    <p style="margin-top:10px; font-weight:600;">- Michelle T.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="contact-section" id="contact">
+        <div class="section-header fade-in">
+            <h2>Get in Touch</h2>
+        </div>
+        <form class="contact-form fade-in">
+            <div class="form-group">
+                <label>Your Name</label>
+                <input type="text" id="custName" placeholder="Enter your name">
+            </div>
+            <div class="form-group">
+                <label>Your Message</label>
+                <textarea id="custMsg" placeholder="How can we help you?"></textarea>
+            </div>
+            <div class="submit-group">
+                <button type="button" class="submit-btn telegram-btn" onclick="formTG()">
+                    <i class="fab fa-telegram"></i> Send via Telegram
+                </button>
+                <button type="button" class="submit-btn whatsapp-btn" onclick="formWA()">
+                    <i class="fab fa-whatsapp"></i> Send via WhatsApp
+                </button>
+            </div>
+        </form>
+    </section>
+
+    <footer>
+        <div class="brand-name" style="color:var(--gold)">Annans Products</div>
+        <p>© 2026 Premium Collections. All rights reserved.</p>
+    </footer>
+
+    <script>
+        const WA_NUM = "16194038183";
+        const TG_USER = "Anabecollections";
+
+        function openWA() { window.open(`https://wa.me/${WA_NUM}`, '_blank'); }
+        function openTG() { window.open(`https://t.me/${TG_USER}`, '_blank'); }
+
+        function formWA() {
+            const name = document.getElementById('custName').value;
+            const msg = document.getElementById('custMsg').value;
+            const text = encodeURIComponent(`Hi! I'm ${name}. ${msg}`);
+            window.open(`https://wa.me/${WA_NUM}?text=${text}`, '_blank');
+        }
+
+        function formTG() {
+            const name = document.getElementById('custName').value;
+            const msg = document.getElementById('custMsg').value;
+            const text = encodeURIComponent(`Hi! I'm ${name}. ${msg}`);
+            window.open(`https://t.me/${TG_USER}?text=${text}`, '_blank');
+        }
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) entry.target.classList.add('visible');
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+    </script>
+</body>
+</html>
+
