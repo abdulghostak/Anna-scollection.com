@@ -1,0 +1,944 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Annans Products | Premium Luxury Boutique</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --gold: #C5A059;
+            --gold-light: #E5D5B7;
+            --gold-dark: #967E4D;
+            --black: #0F0F0F;
+            --white: #FFFFFF;
+            --cream: #FDFCF9;
+            --text: #333333;
+            --whatsapp: #25D366;
+            --telegram: #0088cc;
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--cream);
+            color: var(--text);
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        h1, h2, h3, .nav-logo {
+            font-family: 'Playfair Display', serif;
+        }
+
+        /* --- Floating Background Elements --- */
+        .bg-floating {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            pointer-events: none;
+            overflow: hidden;
+        }
+
+        .bubble {
+            position: absolute;
+            background: radial-gradient(circle, rgba(197, 160, 89, 0.08) 0%, transparent 70%);
+            border-radius: 50%;
+            animation: float 20s infinite ease-in-out;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translate(0, 0) scale(1); }
+            33% { transform: translate(30px, -50px) scale(1.1); }
+            66% { transform: translate(-20px, 20px) scale(0.9); }
+        }
+
+        /* --- Navigation --- */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.98);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            box-shadow: 0 2px 20px rgba(0,0,0,0.05);
+            padding: 1rem 0;
+            transition: var(--transition);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 5%;
+        }
+
+        .nav-logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--black);
+            text-decoration: none;
+            letter-spacing: 1px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--black);
+            font-weight: 500;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: var(--transition);
+            position: relative;
+        }
+
+        .nav-links a:hover,
+        .nav-links a.active {
+            color: var(--gold);
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--gold);
+            transition: var(--transition);
+        }
+
+        .nav-links a:hover::after,
+        .nav-links a.active::after {
+            width: 100%;
+        }
+
+        /* Mobile Menu Toggle */
+        .menu-toggle {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            cursor: pointer;
+            padding: 5px;
+        }
+
+        .menu-toggle span {
+            width: 25px;
+            height: 2px;
+            background: var(--black);
+            transition: var(--transition);
+        }
+
+        @media (max-width: 768px) {
+            .menu-toggle {
+                display: flex;
+            }
+            .nav-links {
+                position: fixed;
+                top: 70px;
+                left: -100%;
+                width: 100%;
+                height: calc(100vh - 70px);
+                background: white;
+                flex-direction: column;
+                padding: 2rem;
+                transition: var(--transition);
+            }
+            .nav-links.active {
+                left: 0;
+            }
+        }
+
+        /* --- Hero Section --- */
+        .hero {
+            height: 80vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding-top: 80px;
+            background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('https://images.unsplash.com/photo-1441986300917-64674bd600d8?auto=format&fit=crop&q=80&w=1920') no-repeat center center/cover;
+            color: white;
+            margin-bottom: 4rem;
+            position: relative;
+        }
+
+        .hero-content {
+            max-width: 800px;
+            padding: 2rem;
+            animation: fadeInUp 1s ease-out;
+        }
+
+        .hero h1 {
+            font-size: clamp(2.5rem, 6vw, 4.5rem);
+            margin-bottom: 1.5rem;
+            text-shadow: 0 4px 10px rgba(0,0,0,0.3);
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+
+        /* --- Sections --- */
+        .section {
+            padding: 5rem 5% 2rem;
+            max-width: 1250px;
+            margin: 0 auto;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 3.5rem;
+        }
+
+        .section-header h2 {
+            font-size: 2.5rem;
+            position: relative;
+            display: inline-block;
+            margin-bottom: 1rem;
+        }
+
+        .section-header h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 2px;
+            background: var(--gold);
+        }
+
+        /* --- Product Grid --- */
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 2.5rem;
+        }
+
+        .product-card {
+            background: var(--white);
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.03);
+            transition: var(--transition);
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            opacity: 0;
+            transform: translateY(20px);
+        }
+
+        .product-card.reveal {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .product-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.08);
+        }
+
+        .product-card.featured {
+            transform: scale(1.02);
+            box-shadow: 0 15px 50px rgba(197, 160, 89, 0.15);
+        }
+
+        .product-card.featured:hover {
+            transform: scale(1.02) translateY(-10px);
+        }
+
+        .img-container {
+            position: relative;
+            overflow: hidden;
+            aspect-ratio: 1 / 1;
+            background: #f0f0f0;
+        }
+
+        .img-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
+        }
+
+        .product-card:hover .img-container img {
+            transform: scale(1.08);
+        }
+
+        .badge {
+            position: absolute;
+            top: 15px;
+            left: 15px;
+            background: var(--gold);
+            color: white;
+            padding: 5px 12px;
+            border-radius: 50px;
+            font-size: 0.7rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            z-index: 10;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .badge.badge-urgent {
+            background: #e74c3c;
+            right: 15px;
+            left: auto;
+        }
+
+        .product-info {
+            padding: 1.5rem;
+            text-align: center;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .product-info h3 {
+            font-size: 1.15rem;
+            margin-bottom: 0.5rem;
+            color: var(--black);
+            font-weight: 600;
+        }
+
+        .price {
+            font-weight: 600;
+            color: var(--gold-dark);
+            font-size: 1.25rem;
+            margin-bottom: 1.5rem;
+        }
+
+        /* Highly Professional Curved Buttons */
+        .order-buttons {
+            display: flex;
+            gap: 12px;
+            margin-top: auto;
+        }
+
+        .order-btn {
+            flex: 1;
+            padding: 12px 15px;
+            border: none;
+            border-radius: 30px;
+            cursor: pointer;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            transition: var(--transition);
+            text-decoration: none;
+            font-size: 0.8rem;
+            letter-spacing: 0.5px;
+        }
+
+        .order-btn:hover {
+            filter: brightness(1.1);
+            transform: scale(1.05);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        }
+
+        .order-btn:active {
+            transform: scale(0.97);
+        }
+
+        .btn-wa { background-color: var(--whatsapp); color: white; }
+        .btn-tg { background-color: var(--telegram); color: white; }
+
+        /* --- Trust Boosters --- */
+        .trust-section {
+            background: var(--black);
+            color: white;
+            padding: 4rem 5%;
+            margin: 5rem 0;
+        }
+
+        .trust-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 3rem;
+            text-align: center;
+        }
+
+        .trust-item i {
+            font-size: 2.2rem;
+            color: var(--gold);
+            margin-bottom: 1.2rem;
+        }
+
+        .trust-item h3 { margin-bottom: 0.5rem; font-size: 1.4rem; }
+        .trust-item p { color: #aaa; font-size: 0.95rem; }
+
+        /* --- Reviews --- */
+        .reviews-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            padding: 2rem 0;
+        }
+
+        .review-card {
+            background: white;
+            padding: 2.5rem;
+            border-radius: 12px;
+            box-shadow: 0 5px 25px rgba(0,0,0,0.02);
+            border: 1px solid rgba(0,0,0,0.05);
+            text-align: center;
+            transition: var(--transition);
+        }
+
+        .review-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 35px rgba(0,0,0,0.05);
+        }
+
+        .stars { color: var(--gold); margin-bottom: 1.2rem; font-size: 1.1rem; }
+
+        /* --- Contact --- */
+        .contact-card {
+            max-width: 600px;
+            margin: 0 auto;
+            background: white;
+            padding: 3.5rem;
+            border-radius: 20px;
+            box-shadow: 0 25px 60px rgba(0,0,0,0.05);
+        }
+
+        .form-group { margin-bottom: 1.8rem; }
+        .form-group label { display: block; margin-bottom: 0.6rem; font-weight: 600; color: var(--black); font-size: 0.9rem; }
+        .form-group input, .form-group textarea, .form-group select {
+            width: 100%;
+            padding: 14px;
+            border: 1px solid #eee;
+            background: #f9f9f9;
+            border-radius: 10px;
+            font-family: inherit;
+            transition: var(--transition);
+        }
+
+        .form-group input:focus, .form-group textarea:focus, .form-group select:focus {
+            outline: none;
+            border-color: var(--gold);
+            background: white;
+        }
+
+        .submit-btn {
+            width: 100%;
+            padding: 16px;
+            background: var(--black);
+            color: white;
+            border: none;
+            border-radius: 30px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: var(--transition);
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        .submit-btn:hover { 
+            background: var(--gold-dark); 
+            transform: translateY(-2px);
+            box-shadow: 0 5px 20px rgba(197, 160, 89, 0.3);
+        }
+
+        footer {
+            text-align: center;
+            padding: 5rem 0;
+            background: var(--white);
+            color: #777;
+            border-top: 1px solid #eee;
+        }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 2.8rem; }
+            .section { padding: 4rem 5% 1rem; }
+            .product-grid { grid-template-columns: 1fr; }
+            .contact-card { padding: 2rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="bg-floating" id="bgBubbles"></div>
+
+    <nav id="navbar">
+        <div class="nav-container">
+            <a href="#home" class="nav-logo">ANNANS</a>
+            <div class="menu-toggle" onclick="toggleMenu()">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+            <div class="nav-links" id="navLinks">
+                <a href="#home" class="active" onclick="closeMobileMenu()">Home</a>
+                <a href="#featured" onclick="closeMobileMenu()">Best Sellers</a>
+                <a href="#luxury" onclick="closeMobileMenu()">Luxury</a>
+                <a href="#fashion" onclick="closeMobileMenu()">Shop</a>
+                <a href="#gifts" onclick="closeMobileMenu()">Gifts</a>
+                <a href="#contact" onclick="closeMobileMenu()">Contact</a>
+            </div>
+        </div>
+    </nav>
+
+    <header class="hero" id="home">
+        <div class="hero-content">
+            <h1>Elevate Your Style</h1>
+            <p>Experience the ultimate in premium fashion and luxury accessories curated for excellence.</p>
+        </div>
+    </header>
+
+    <!-- Best Sellers -->
+    <section id="featured" class="section">
+        <div class="section-header">
+            <h2>Featured Best Sellers</h2>
+        </div>
+        <div class="product-grid" id="featuredGrid">
+            <!-- Best Selling items injected here -->
+        </div>
+    </section>
+
+    <!-- Luxury Collection -->
+    <section id="luxury" class="section">
+        <div class="section-header">
+            <h2>Luxury Collection</h2>
+        </div>
+        <div class="product-grid" id="luxuryGrid">
+            <!-- Luxury items injected here -->
+        </div>
+    </section>
+
+    <div class="trust-section">
+        <div class="trust-container">
+            <div class="trust-item">
+                <i class="fas fa-gem"></i>
+                <h3>Authentic Quality</h3>
+                <p>Every piece is verified for luxury standards.</p>
+            </div>
+            <div class="trust-item">
+                <i class="fas fa-shipping-fast"></i>
+                <h3>Express Delivery</h3>
+                <p>Global shipping to your doorstep.</p>
+            </div>
+            <div class="trust-item">
+                <i class="fas fa-headset"></i>
+                <h3>24/7 Concierge</h3>
+                <p>Personalized support for every order.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Fashion & Accessories -->
+    <section id="fashion" class="section">
+        <div class="section-header">
+            <h2>Fashion & Accessories</h2>
+        </div>
+        <div class="product-grid" id="fashionGrid">
+            <!-- Fashion items injected here -->
+        </div>
+    </section>
+
+    <!-- Gifts & Add-ons -->
+    <section id="gifts" class="section">
+        <div class="section-header">
+            <h2>Gifts & Add-ons</h2>
+        </div>
+        <div class="product-grid" id="giftsGrid">
+            <!-- Gift items injected here -->
+        </div>
+    </section>
+
+    <!-- Reviews -->
+    <section id="reviews" class="section">
+        <div class="section-header">
+            <h2>What Our Clients Say</h2>
+        </div>
+        <div class="reviews-container">
+            <div class="review-card">
+                <div class="stars">★★★★★</div>
+                <p>"The Luxury Handbag is a masterpiece. The leather quality is unlike anything I've seen. Simply perfect."</p>
+                <p style="margin-top:1.5rem; font-weight:700; color: var(--gold-dark);">- Sarah J.</p>
+            </div>
+            <div class="review-card">
+                <div class="stars">★★★★★</div>
+                <p>"Ordered the Gold Necklace and it arrived in stunning packaging. The concierge service was excellent."</p>
+                <p style="margin-top:1.5rem; font-weight:700; color: var(--gold-dark);">- Elena R.</p>
+            </div>
+            <div class="review-card">
+                <div class="stars">★★★★★</div>
+                <p>"Annans is my go-to for luxury gifts. The quality is consistent and the service is always top-notch."</p>
+                <p style="margin-top:1.5rem; font-weight:700; color: var(--gold-dark);">- Michaela K.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact -->
+    <section id="contact" class="section">
+        <div class="section-header">
+            <h2>Secure Ordering</h2>
+        </div>
+        <div class="contact-card">
+            <form id="orderForm">
+                <div class="form-group">
+                    <label>Full Name</label>
+                    <input type="text" id="custName" placeholder="Enter your name" required>
+                </div>
+                <div class="form-group">
+                    <label>Preferred Contact Platform</label>
+                    <select id="platform">
+                        <option value="WhatsApp">WhatsApp</option>
+                        <option value="Telegram">Telegram</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Your Inquiry</label>
+                    <textarea id="custMsg" rows="4" placeholder="Tell us which items you are interested in..."></textarea>
+                </div>
+                <button type="submit" class="submit-btn">SEND INQUIRY</button>
+            </form>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2024 Annans Products. Luxury and Style Redefined.</p>
+    </footer>
+
+    <script>
+        // Image fallback URL
+        const fallbackImg = 'https://placehold.co/600x800?text=Item+Image';
+
+        // WhatsApp Settings
+        const WHATSAPP_NUMBER = '19803073056';
+
+        // Product Data with verified working images
+        const products = {
+            bestSellers: [
+                { 
+                    name: "Elegant Gold Necklace", 
+                    price: "$120", 
+                    img: "https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?w=600&q=80", 
+                    badge: "Only 3 Left",
+                    featured: true
+                },
+                { 
+                    name: "Classic Pearl Earrings", 
+                    price: "$95", 
+                    img: "https://plus.unsplash.com/premium_photo-1739548338201-4c337ce176d2?fm=jpg&q=60&w=800&auto=format&fit=crop", 
+                    badge: "Trending"
+                },
+                { 
+                    name: "Diamond Tennis Bracelet", 
+                    price: "$450", 
+                    img: "https://images.unsplash.com/photo-1767921777873-81818b812a4d?fm=jpg&q=60&w=800&auto=format&fit=crop", 
+                    badge: "Hot"
+                },
+                { 
+                    name: "Gold Hoop Earrings", 
+                    price: "$85", 
+                    img: "https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?auto=format&fit=crop&q=80&w=800", 
+                    badge: "Only 3 Left"
+                },
+                { 
+                    name: "Layered Gold Chain Set", 
+                    price: "$150", 
+                    img: "https://images.unsplash.com/photo-1611591437281-460bfbe1220a?auto=format&fit=crop&q=80&w=800", 
+                    badge: "New"
+                },
+                { 
+                    name: "Sapphire Pendant", 
+                    price: "$280", 
+                    img: "https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?auto=format&fit=crop&q=80&w=800", 
+                    badge: "Premium"
+                }
+            ],
+            luxury: [
+                { 
+                    name: "Luxury Leather Handbag", 
+                    price: "$500", 
+                    img: "https://plus.unsplash.com/premium_photo-1723826753083-2309f7203ab1?fm=jpg&q=60&w=800&auto=format&fit=crop"
+                },
+                { 
+                    name: "Designer Travel Bag", 
+                    price: "$780", 
+                    img: "https://images.unsplash.com/photo-1553062407-98eeb64c6a62?auto=format&fit=crop&q=80&w=800"
+                },
+                { 
+                    name: "Premium Jewelry Set", 
+                    price: "$950", 
+                    img: "https://images.unsplash.com/photo-1512163143273-bde0e3cc7407?auto=format&fit=crop&q=80&w=800"
+                },
+                { 
+                    name: "Luxury Gift Box Set", 
+                    price: "$850", 
+                    img: "https://images.unsplash.com/photo-1549465220-1a8b9238cd48?auto=format&fit=crop&q=80&w=800"
+                },
+                { 
+                    name: "Platinum Timepiece", 
+                    price: "$1,200", 
+                    img: "https://images.unsplash.com/photo-1670404160620-a3a86428560e?fm=jpg&q=60&w=800&auto=format&fit=crop"
+                },
+                { 
+                    name: "Designer Sunglasses", 
+                    price: "$320", 
+                    img: "https://cdn.shopify.com/s/files/1/0850/4970/files/BOTTOMLESSBRUNCH2330820bannerwebTeaLilyCamillaEyewear_2048x2048.jpg?v=1684882673"
+                }
+            ],
+            fashion: [
+                { 
+                    name: "Classic High Heels", 
+                    price: "$220", 
+                    img: "https://plus.unsplash.com/premium_photo-1661775566620-c8d785b32958?fm=jpg&q=60&w=800&auto=format&fit=crop"
+                },
+                { 
+                    name: "Premium Wrist Watch", 
+                    price: "$350", 
+                    img: "https://images.unsplash.com/photo-1524592094714-0f0654e20314?auto=format&fit=crop&q=80&w=800"
+                },
+                { 
+                    name: "Silk Scarf Collection", 
+                    price: "$140", 
+                    img: "https://static.vecteezy.com/system/resources/thumbnails/069/641/945/small_2x/luxurious-blue-silk-scarf-with-gold-and-red-paisley-design-photo.jpg"
+                },
+                { 
+                    name: "Velvet Clutch Bag", 
+                    price: "$280", 
+                    img: "https://cm.vogacloset.com/products/7w/eu/x2do2ihf008tanun87mnd/images/25e024eafa331d2bdc4a8f8f0724f869a10dce67/1wl9k3buod/image_zoom_bu4wnqn3q_ujc2ile0e.webp"
+                },
+                { 
+                    name: "Gold-Plated Ring", 
+                    price: "$170", 
+                    img: "https://images.unsplash.com/photo-1605100804763-247f67b3557e?auto=format&fit=crop&q=80&w=800"
+                },
+                { 
+                    name: "Luxury Makeup Kit", 
+                    price: "$250", 
+                    img: "https://img.kwcdn.com/product/fancy/59831281-623e-40ea-8db4-41cb8cae552c.jpg"
+                }
+            ],
+            gifts: [
+                { 
+                    name: "Romantic Flower Bouquet", 
+                    price: "$75", 
+                    img: "https://images.unsplash.com/photo-1523694576729-dc99e9c0f9b4?fm=jpg&q=60&w=800&auto=format&fit=crop"
+                },
+                { 
+                    name: "Luxury Scented Candle", 
+                    price: "$65", 
+                    img: "https://images.unsplash.com/photo-1760804876257-f073f77f2bcf?fm=jpg&q=60&w=800&auto=format&fit=crop"
+                },
+                { 
+                    name: "Premium Leather Wallet", 
+                    price: "$120", 
+                    img: "https://vonbaer.com/cdn/shop/files/von-baer-heritage-premium-mens-leather-trifold-wallet-solid-brown-in-the-car-opened.jpg?v=1757501699&width=575"
+                },
+                { 
+                    name: "Silk Sleep Mask Set", 
+                    price: "$85", 
+                    img: "https://i.etsystatic.com/22390528/r/il/30176d/2636582616/il_570xN.2636582616_cotv.jpg"
+                },
+                { 
+                    name: "Cosmetic Pouch", 
+                    price: "$35", 
+                    img: "https://images.unsplash.com/photo-1522337660859-02fbefca4702?auto=format&fit=crop&q=80&w=800"
+                },
+                { 
+                    name: "Greeting Gift Package", 
+                    price: "$20", 
+                    img: "https://images.unsplash.com/photo-1549465220-1a8b9238cd48?auto=format&fit=crop&q=80&w=800"
+                }
+            ]
+        };
+
+        // Render Function with image fallback
+        function renderProducts(category, containerId) {
+            const container = document.getElementById(containerId);
+            products[category].forEach((item, index) => {
+                const card = document.createElement('div');
+                card.className = 'product-card' + (item.featured ? ' featured' : '');
+                card.style.transitionDelay = `${index * 0.1}s`;
+
+                const urgentBadge = item.badge === "Only 3 Left" ? '<span class="badge badge-urgent">Only 3 Left</span>' : '';
+                const regularBadge = item.badge && item.badge !== "Only 3 Left" ? `<span class="badge">${item.badge}</span>` : '';
+
+                card.innerHTML = `
+                    ${regularBadge}
+                    ${urgentBadge}
+                    <div class="img-container">
+                        <img src="${item.img}" alt="${item.name}" loading="lazy" onerror="this.src='${fallbackImg}'">
+                    </div>
+                    <div class="product-info">
+                        <h3>${item.name}</h3>
+                        <p class="price">${item.price}</p>
+                        <div class="order-buttons">
+                            <a href="#" class="order-btn btn-wa" onclick="handleOrder('${item.name}', '${item.price}', 'WA'); return false;">
+                                <i class="fab fa-whatsapp"></i> WhatsApp
+                            </a>
+                            <a href="#" class="order-btn btn-tg" onclick="handleOrder('${item.name}', '${item.price}', 'TG'); return false;">
+                                <i class="fab fa-telegram-plane"></i> Telegram
+                            </a>
+                        </div>
+                    </div>
+                `;
+                container.appendChild(card);
+            });
+        }
+
+        // Ordering Logic
+        function handleOrder(name, price, platform) {
+            if (platform === 'WA') {
+                const msg = `Hi, I want to purchase the ${name}. Is it still available?`;
+                const encodedMsg = encodeURIComponent(msg);
+                window.open(`https://wa.me/${WHATSAPP_NUMBER}?text=${encodedMsg}`, '_blank');
+            } else {
+                // Keep existing Telegram logic as requested
+                const tgMsg = `Hello Annans Products! I am interested in purchasing:\n\n*${name}*\nPrice: *${price}*\n\nIs this available?`;
+                const encodedTgMsg = encodeURIComponent(tgMsg);
+                window.open(`https://t.me/AnnansProducts?text=${encodedTgMsg}`, '_blank');
+            }
+        }
+
+        // Background Animation
+        function initBubbles() {
+            const container = document.getElementById('bgBubbles');
+            for (let i = 0; i < 15; i++) {
+                const bubble = document.createElement('div');
+                bubble.className = 'bubble';
+                const size = Math.random() * 300 + 100;
+                bubble.style.width = `${size}px`;
+                bubble.style.height = `${size}px`;
+                bubble.style.left = `${Math.random() * 100}%`;
+                bubble.style.top = `${Math.random() * 100}%`;
+                bubble.style.animationDelay = `${Math.random() * 10}s`;
+                bubble.style.animationDuration = `${15 + Math.random() * 15}s`;
+                container.appendChild(bubble);
+            }
+        }
+
+        // Mobile Menu Toggle
+        function toggleMenu() {
+            const navLinks = document.getElementById('navLinks');
+            navLinks.classList.toggle('active');
+        }
+
+        // Close mobile menu when a nav link is clicked
+        function closeMobileMenu() {
+            const navLinks = document.getElementById('navLinks');
+            navLinks.classList.remove('active');
+        }
+
+        // Active Navigation Link
+        function updateActiveNav() {
+            const sections = document.querySelectorAll('section[id], header[id]');
+            const navLinks = document.querySelectorAll('.nav-links a');
+
+            let current = '';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                if (window.scrollY >= (sectionTop - 200)) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href').slice(1) === current) {
+                    link.classList.add('active');
+                }
+            });
+        }
+
+        // Intersection Observer for scroll animations
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('reveal');
+                }
+            });
+        }, { threshold: 0.1 });
+
+        // Form Handler
+        document.getElementById('orderForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const name = document.getElementById('custName').value;
+            const platform = document.getElementById('platform').value;
+            const msg = document.getElementById('custMsg').value;
+            const fullMsg = `Inquiry from ${name}:\n${msg}`;
+            const encoded = encodeURIComponent(fullMsg);
+            if (platform === 'WhatsApp') {
+                window.open(`https://wa.me/${WHATSAPP_NUMBER}?text=${encoded}`, '_blank');
+            } else {
+                window.open(`https://t.me/AnnansProducts?text=${encoded}`, '_blank');
+            }
+        });
+
+        // Scroll Event Listener
+        window.addEventListener('scroll', updateActiveNav);
+
+        // Initialize
+        window.onload = () => {
+            renderProducts('bestSellers', 'featuredGrid');
+            renderProducts('luxury', 'luxuryGrid');
+            renderProducts('fashion', 'fashionGrid');
+            renderProducts('gifts', 'giftsGrid');
+            initBubbles();
+
+            setTimeout(() => {
+                document.querySelectorAll('.product-card').forEach(card => observer.observe(card));
+            }, 600);
+
+            // Correctly handle navigation links for smooth scrolling and menu closing
+            document.querySelectorAll('.nav-links a, .nav-logo').forEach(link => {
+                link.addEventListener('click', function(e) {
+                    const targetId = this.getAttribute('href');
+                    if (targetId && targetId.startsWith('#')) {
+                        e.preventDefault();
+                        const targetElement = document.querySelector(targetId);
+                        if (targetElement) {
+                            // Close menu first
+                            closeMobileMenu();
+                            
+                            // Scroll to target
+                            const navHeight = document.getElementById('navbar').offsetHeight;
+                            const elementPosition = targetElement.getBoundingClientRect().top;
+                            const offsetPosition = elementPosition + window.pageYOffset - navHeight;
+
+                            window.scrollTo({
+                                top: offsetPosition,
+                                behavior: 'smooth'
+                            });
+                        }
+                    }
+                });
+            });
+        };
+    </script>
+</body>
+</html>
